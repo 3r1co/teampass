@@ -43,8 +43,6 @@ items:
             volumeMounts:
             - mountPath: /teampass
               name: claim-teampass
-            - mountPath: /files
-              name: claim-teampass-files
             resources: {}
             terminationMessagePath: /dev/termination-log
           - image: mysql/mysql-server:5.5
@@ -76,9 +74,6 @@ items:
         - name: claim-teampass
           persistentVolumeClaim:
             claimName: claim-teampass
-        - name: claim-teampass-files
-          persistentVolumeClaim:
-            claimName: claim-teampass-files
         - name: claim-mysql
           persistentVolumeClaim:
             claimName: claim-mysql
@@ -102,17 +97,6 @@ items:
   metadata:
     creationTimestamp: null
     name: claim-mysql
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 1Gi
-- apiVersion: v1
-  kind: PersistentVolumeClaim
-  metadata:
-    creationTimestamp: null
-    name: claim-teampass-files
   spec:
     accessModes:
     - ReadWriteOnce
